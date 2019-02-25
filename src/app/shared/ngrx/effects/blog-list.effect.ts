@@ -17,6 +17,7 @@ import {
 } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { BlogListService } from '../../services/blog-list.service';
+import { BlogList } from '../../models/blog-list';
 
 @Injectable()
 export class BlogListEffect {
@@ -38,6 +39,26 @@ export class BlogListEffect {
                 catchError(
                     (error) => of({
                         type: BLOGLIST_ACTIONS.GET_ERROR,
+                        payload: error
+                    })
+                )
+            )
+        )
+    );
+
+    @Effect() $getBlogById: Observable<BlogListAction> = this.$actions.pipe(
+        ofType(BLOGLIST_ACTIONS.GET_DETAIL),
+        mergeMap(
+            (actions: BlogListAction) => this.blogListService.getBlogById(actions.payload).pipe(
+                map(
+                    (response) => ({
+                        type: BLOGLIST_ACTIONS.GET_DETAIL_SUCCESS,
+                        payload: response
+                    })
+                ),
+                catchError(
+                    (error) => of({
+                        type: BLOGLIST_ACTIONS.GET_DETAIL_ERROR,
                         payload: error
                     })
                 )

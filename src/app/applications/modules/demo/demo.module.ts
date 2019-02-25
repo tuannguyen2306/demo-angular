@@ -5,12 +5,14 @@ import { ControlComponent } from './components/control/control.component';
 import { CreateComponent } from './components/create/create.component';
 import { ListComponent } from './components/list/list.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateComponent } from './components/update/update.component';
 
 @NgModule({
   declarations: [
     ControlComponent,
     CreateComponent,
-    ListComponent
+    ListComponent,
+    UpdateComponent
   ],
   imports: [
     CommonModule,

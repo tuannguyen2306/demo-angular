@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RootComponent } from './root/root.component';
 import { RootRoutingModule } from './root-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     CommonModule,
     BrowserModule,
+    HttpClientModule,
     RootRoutingModule
   ],
   bootstrap: [

@@ -21,8 +21,18 @@ export class ControlComponent implements OnInit, OnDestroy {
 
     private appStoreObs: Observable<BlogListAction>;
     private appStoreSub: Subscription;
-    public blogList: BlogList[];
+    public blogList: {
+      pageIndex: number,
+      pageSize: number,
+      totalCount: number,
+      totalPages: number,
+      hasNextPage: boolean,
+      hasPreviousPage: boolean,
+      sources: BlogList[]
+    };
     public isLoading: boolean = true;
+    public isOpenDetail: boolean = false;
+    public blog: BlogList
 
   ngOnInit() {
     this.appStoreObs = this.appStore.pipe(
@@ -30,21 +40,30 @@ export class ControlComponent implements OnInit, OnDestroy {
     );
     this.appStoreSub = this.appStoreObs.subscribe(
       (actions: BlogListAction) => {
-        console.log(actions);
         switch(actions.type){
           case BLOGLIST_ACTIONS.GET: {
             this.isLoading = true;
             break;
           }
           case BLOGLIST_ACTIONS.GET_SUCCESS: {
-            console.log(actions.payload)
-            this.blogList = [...actions.payload];
+            this.blogList = actions.payload;
             this.isLoading = false;
             break;
           }
           case BLOGLIST_ACTIONS.GET_ERROR: {
             break;
           }
+          // case BLOGLIST_ACTIONS.GET_DETAIL: {
+          //   break;
+          // }
+          // case BLOGLIST_ACTIONS.GET_DETAIL_SUCCESS: {
+          //   this.blog = actions.payload;
+          //   this.isOpenDetail = true;
+          //   break;
+          // }
+          // case BLOGLIST_ACTIONS.GET_DETAIL_ERROR: {
+          //   break;
+          // }
         }
       }
     );

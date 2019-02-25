@@ -7,23 +7,41 @@ import { employeeReducer } from '../shared/ngrx/reducers/employee.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { EmployeeEffect } from '../shared/ngrx/effects/employee.effect';
 import { EmployeeService } from '../shared/services/employee.service';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
+import { SidebarLeftComponent } from './components/sidebar-left/sidebar-left.component';
+import { SidebarRightComponent } from './components/sidebar-right/sidebar-right.component';
+import { BlogListEffect } from '../shared/ngrx/effects/blog-list.effect';
+import { blogListReducer } from '../shared/ngrx/reducers/blog-list.reducer';
+import { BlogListService } from '../shared/services/blog-list.service';
 
 @NgModule({
   declarations: [
-    DesktopLayoutComponent
+    DesktopLayoutComponent,
+    AppHeaderComponent,
+    AppFooterComponent,
+    SidebarLeftComponent,
+    SidebarRightComponent
   ],
   imports: [
     CommonModule,
     ApplicationsRoutingModule,
     StoreModule.forRoot({
-      employee: employeeReducer
+      employee: employeeReducer,
+      bloglist: blogListReducer
     }),
     EffectsModule.forRoot([
-      EmployeeEffect
+      EmployeeEffect,
+      BlogListEffect
     ])
   ],
+  exports: [
+    AppHeaderComponent,
+    AppFooterComponent
+  ],
   providers: [
-    EmployeeService
+    EmployeeService,
+    BlogListService
   ]
 })
 export class ApplicationsModule { }

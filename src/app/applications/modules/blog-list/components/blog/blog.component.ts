@@ -9,7 +9,7 @@ import {
 import { Store } from '@ngrx/store';
 import { BlogListAction, BLOGLIST_ACTIONS } from 'src/app/shared/ngrx/actions/blog-list.action';
 import { BlogList } from 'src/app/shared/models/blog-list';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -21,10 +21,19 @@ export class BlogComponent implements OnInit, AfterViewInit, OnChanges {
     private appStore: Store<BlogListAction>
     ) { }
 
-  @Input() blogList: BlogList[];
+  @Input() arrBlog: {
+    pageIndex: number,
+    pageSize: number,
+    totalCount: number,
+    totalPages: number,
+    hasNextPage: boolean,
+    hasPreviousPage: boolean,
+    sources: BlogList[]
+  };
+  public listBlog: BlogList[]
 
   ngOnInit() {
-    console.log(this.blogList)
+
   }
 
   ngAfterViewInit() {
@@ -34,9 +43,17 @@ export class BlogComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.blogList && this.blogList) {
-      console.log(this.blogList)
+    if (changes.arrBlog && this.arrBlog) {
+      this.listBlog = this.arrBlog.sources;
     }
+  }
+
+  onClickBlogDetail(id){
+    console.log(id)
+    this.appStore.dispatch({
+      type: BLOGLIST_ACTIONS.GET_DETAIL,
+      payload: id
+    });
   }
 
 }

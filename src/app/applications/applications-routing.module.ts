@@ -5,7 +5,7 @@ import { DesktopLayoutComponent } from './components/desktop-layout/desktop-layo
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'demo',
+        redirectTo: 'blog-list',
         pathMatch: 'full'
     },
     {
@@ -13,8 +13,8 @@ const routes: Routes = [
         component: DesktopLayoutComponent,
         children: [
             {
-                path: 'demo',
-                loadChildren: './modules/demo/demo.module#DemoModule'
+                path: 'blog-list',
+                loadChildren: './modules/blog-list/blog-list.module#BlogListModule'
             },
         ]
     }

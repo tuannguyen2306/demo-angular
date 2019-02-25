@@ -18,4 +18,8 @@ export class BlogListService {
   getBlogList(): Observable<BlogList[]>{
     return this.httpClient.get<BlogList[]>(this.apiURL);
   }
+
+  getBlogById(id): Observable<BlogList>{
+    return this.httpClient.get<BlogList>(this.apiURL + "/" + id)
+  }
 }

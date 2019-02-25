@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<app-app-header></app-app-header>
+<main class="main">
+    <div class="container" style="margin-top: 20px;min-height: 500px;">    
+        <div class="row">
+                <div class="col-sm-2">
+                    <app-sidebar-left></app-sidebar-left>
+                </div>
+                <div class="col-sm-8">
+                    <router-outlet></router-outlet>
+                </div>
+                <div class="col-sm-2">
+                    <app-sidebar-right></app-sidebar-right>
+                </div>            
+        </div>    
+    </div>
+</main>
+<app-app-footer></app-app-footer>

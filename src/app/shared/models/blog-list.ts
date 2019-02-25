@@ -1,5 +1,9 @@
 export interface BlogList {
     id: string;
-    name: string;
-    description: string;
+    title: string;
+    avataURL: string;
+    shortDescription: string;
+    longDescription: string;
+    blogCategoryId: string;
+    blogCategoryName: string;
 }

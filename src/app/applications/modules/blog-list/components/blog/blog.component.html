@@ -1,22 +1,13 @@
 <div class="edit">
-  <div class="card" style="width: 14rem;">
-    <img src="../../../../../../assets/images/special.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <a href="#">
-        <h5 class="card-title">Card title</h5>
-      </a>
-      <p class="card-text">Some quick example</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-  <div class="card" style="width: 14rem;">
-    <img src="../../../../../../assets/images/special.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <a href="#">
-        <h5 class="card-title">Card title</h5>
-      </a>
-      <p class="card-text">Some quick example</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+  <ng-template ngFor let-blog [ngForOf]="listBlog" let-i="index">
+    <div class="card padding-card" style="width: 14rem;">
+        <img src="http://{{blog.avataURL}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <a routerLink="blog-detail" (click)="onClickBlogDetail(blog.id)">
+            <h5 class="card-title">{{blog.title}}</h5>
+          </a>
+          <p class="card-text">{{blog.shortDescription}}</p>
+        </div>
+      </div>
+  </ng-template>  
 </div>

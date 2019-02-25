@@ -1,3 +1,7 @@
 <div class="container">
-    <app-blog [blogList]="blogList"></app-blog>
+    <app-blog [arrBlog]="blogList"></app-blog>
+    <!-- <ng-template *ngIf="blog">
+        <app-blog-detail [blog]="blog"></app-blog-detail>
+    </ng-template> -->
+    <router-outlet></router-outlet>
 </div>
